@@ -14,7 +14,7 @@ return {
             "python",
             "markdown",
             "markdown_inline",
-            "yaml", 
+            "yaml",
             "json",
             "html",
             "regex",
