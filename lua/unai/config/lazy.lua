@@ -12,7 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    spec = {
-        { import = "unai.plugins"}
-    }
+  spec = {
+    { import = "unai.plugins" },
+  },
 })
+

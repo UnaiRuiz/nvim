@@ -9,7 +9,7 @@ map("i", "jk", "<esc>", { silent = true })
 -- map("n", "<", "]", { silent = true, remap = true })
 
 -- System Clipboard
-map({"n", "v"}, "<leader>y", "\"+y", { desc = "Yank to clipboard" })
+map({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to clipboard" })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
@@ -43,8 +43,8 @@ map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
 map("n", "<leader>w-", "<cmd>wincmd s<bar>wincmd w<cr>", { desc = "Split window below" })
 map("n", "<leader>w+", "<cmd>wincmd v<bar>wincmd w<cr>", { desc = "Split window right" })
-map("n", "<leader>-",  "<cmd>wincmd s<bar>wincmd w<cr>", { desc = "Split window below" })
-map("n", "<leader>+",  "<cmd>wincmd v<bar>wincmd w<cr>", { desc = "Split window right" })
+map("n", "<leader>-", "<cmd>wincmd s<bar>wincmd w<cr>", { desc = "Split window below" })
+map("n", "<leader>+", "<cmd>wincmd v<bar>wincmd w<cr>", { desc = "Split window right" })
 
 -- Tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
