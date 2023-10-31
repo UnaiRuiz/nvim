@@ -10,10 +10,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
--- Recover cursor on leaving nvim (TODO: no funciona)
-vim.cmd([[
-  augroup ChangeCursor
-    au!
-    au ExitPre * :set guicursor=a:ver25-blinkon100
-    augroup END
-]])
+-- Recover cursor on leaving nvim
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = augroup("recover_cursor"),
+  callback = function()
+    vim.o.guicursor = "a:ver25-blinkon100"
+  end,
+})
