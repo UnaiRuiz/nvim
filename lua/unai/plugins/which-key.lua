@@ -11,7 +11,7 @@ return {
       ["<leader>b"] = { name = "+buffers" },
       ["<leader>w"] = { name = "+windows" },
       ["<leader><Tab>"] = { name = "+tabs" },
-      ["<leader>gl"] = { name = "+lsp" },
+      ["<leader>l"] = { name = "+lsp" },
     },
   },
   config = function(_, opts)
