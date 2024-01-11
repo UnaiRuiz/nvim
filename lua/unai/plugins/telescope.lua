@@ -4,6 +4,7 @@ return {
     tag = "0.1.3",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      "debugloop/telescope-undo.nvim",
     },
     cmd = "Telescope",
     version = false,
@@ -34,7 +35,24 @@ return {
       { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
       { "<leader>lD", "<cmd>Telescope diagnostics <cr>", desc = "Workspace diagnostics" },
       -- Help
-      { "<leader>fh", "<cmd>Telescope help_tags <cr>", desc = "Find Help" },
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find Help" },
+      -- Undo tree
+      { "<leader>u", "<cmd>Telescope undo<cr>", desc = "Show undo tree" },
     },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          undo = {
+            use_delta = true,
+            layout_strategy = "vertical",
+            side_by_side = true,
+            layout_config = {
+              preview_height = 0.5,
+            },
+          },
+        },
+      })
+      require("telescope").load_extension("undo")
+    end,
   },
 }
