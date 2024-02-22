@@ -5,13 +5,13 @@ return {
     "folke/neodev.nvim",
   },
   config = function()
-    local on_attach = function(client, bufnr)
+    local on_attach = function(bufnr)
       vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
       local opts = { buffer = bufnr }
-      -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-      -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-      -- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-      -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
       vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
       vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
       vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
@@ -37,18 +37,11 @@ return {
         },
       },
     })
-    require("lspconfig").pylsp.setup({
+    require("lspconfig").pyright.setup({
       on_attach = on_attach,
       settings = {
-        pylsp = {
-          -- Linting y formatting hecho con null-ls.
-          -- Se han deshabilitado los analizadores que vienen por defecto
-          -- yo quería black y flake8 pero se complica un poco configurarlo aquí
-          plugins = {
-            pycodestyle = { enabled = false },
-            mccabe = { enabled = false },
-            pyflakes = { enabled = false },
-          },
+        python = {
+          pythonPath = "/usr/bin/python3.11",
         },
       },
     })

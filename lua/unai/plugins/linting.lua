@@ -6,7 +6,7 @@ return {
     local lint = require("lint")
 
     lint.linters_by_ft = {
-      python = { "flake8", "bandit" },
+      python = { "flake8", "bandit", "mypy" },
       markdown = { "markdownlint" },
       json = { "jsonlint" },
     }

@@ -57,8 +57,13 @@ map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- New file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
--- Lazy
--- map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
-
--- Undo tree
--- map("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Undo" })
+-- LSP
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+map("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
+map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+map("n", "K", vim.lsp.buf.hover, { desc = "Show info" })
+map("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
+map("n", "<space>D", vim.lsp.buf.type_definition, { desc = "Show type definition" })
+map("n", "<space>rn", vim.lsp.buf.rename, { desc = "Rename" })
+map({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { desc = "Code action" })

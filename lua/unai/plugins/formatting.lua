@@ -7,11 +7,13 @@ return {
 
     conform.setup({
       formatters_by_ft = {
+        python = { "isort", "black" },
+        lua = { "stylua" },
         json = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
-        lua = { "stylua" },
-        python = { "isort", "black" },
+        -- html = { "prettier" },
+        css = { "prettier" },
       },
       format_on_save = {
         lsp_fallback = false,

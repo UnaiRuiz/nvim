@@ -23,6 +23,7 @@ return {
       ensure_installed = {
         "lua_ls",
         "pylsp",
+        "pyright",
       },
       automatic_installation = true, -- not the same as ensure_installed
     })
@@ -33,9 +34,11 @@ return {
         "isort",
         "black",
         "flake8",
+        "mypy",
         "jsonlint",
         "prettier",
         "markdownlint",
+        "debugpy",
       },
     })
   end,
