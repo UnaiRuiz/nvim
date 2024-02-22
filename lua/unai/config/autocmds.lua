@@ -10,6 +10,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- Remove spell checking on terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = augroup("remove_spell_on_term"),
+  callback = function()
+    vim.wo.spell = false
+  end,
+})
+
 -- Recover cursor on leaving nvim
 vim.api.nvim_create_autocmd("VimLeavePre", {
   group = augroup("recover_cursor"),

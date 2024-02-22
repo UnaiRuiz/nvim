@@ -3,6 +3,8 @@ local map = vim.keymap.set
 -- Easier <esc>
 map("i", "jj", "<esc>", { silent = true })
 map("i", "jk", "<esc>", { silent = true })
+map("t", "jj", "<C-\\><C-n><cmd>ToggleTerm<CR>", { noremap = true })
+map("t", "jk", "<C-\\><C-n>", { noremap = true })
 
 -- Easier previous/next navigation for spanish ISO layout
 -- map("n", ">", "[", { silent = true, remap = true })
@@ -16,12 +18,16 @@ map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+map("t", "<C-h>", "<cmd>wincmd h<CR>", { desc = "Go to left window" })
+map("t", "<C-j>", "<cmd>wincmd j<CR>", { desc = "Go to lower window" })
+map("t", "<C-k>", "<cmd>wincmd k<CR>", { desc = "Go to upper window" })
+map("t", "<C-l>", "<cmd>wincmd l<CR>", { desc = "Go to right window" })
 
 -- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+map({ "n", "t" }, "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map({ "n", "t" }, "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map({ "n", "t" }, "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map({ "n", "t" }, "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move Lines
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move down" })
@@ -67,3 +73,7 @@ map("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
 map("n", "<space>D", vim.lsp.buf.type_definition, { desc = "Show type definition" })
 map("n", "<space>rn", vim.lsp.buf.rename, { desc = "Rename" })
 map({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+
+-- ToggleTerm
+map({ "n", "t" }, "<C-t>h", "<cmd>ToggleTerm size=20 direction=horizontal<CR>", { desc = "Toggle Terminal" })
+map({ "n", "t" }, "<C-t>f", "<cmd>ToggleTerm direction=float<CR>", { desc = "Toggle Terminal" })

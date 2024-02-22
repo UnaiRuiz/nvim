@@ -16,7 +16,7 @@ return {
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
       -- treesitter
-      { "<leader>t", "<cmd>Telescope treesitter<cr>", desc = "Treesitter" },
+      { "<leader>s", "<cmd>Telescope treesitter<cr>", desc = "Treesitter symbols" },
       -- git
       {
         "<leader>gf",
