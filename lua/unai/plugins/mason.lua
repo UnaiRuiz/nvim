@@ -24,6 +24,7 @@ return {
         "lua_ls",
         "pylsp",
         "pyright",
+        "yamlls",
       },
       automatic_installation = true, -- not the same as ensure_installed
     })
@@ -34,7 +35,6 @@ return {
         "isort",
         "black",
         "flake8",
-        "mypy",
         "jsonlint",
         "prettier",
         "markdownlint",

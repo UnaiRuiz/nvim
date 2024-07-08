@@ -46,5 +46,16 @@ return {
       },
     })
     require("lspconfig").marksman.setup({})
+    require("lspconfig").yamlls.setup({
+      settings = {
+        yaml = {
+          validate = true,
+          schemaStore = {
+            enable = false,
+            url = "",
+          },
+        },
+      },
+    })
   end,
 }
