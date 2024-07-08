@@ -1,0 +1,28 @@
+{
+  "Main function": {
+    "prefix": "main",
+    "body": [
+      "def main():",
+      "    ${1:pass}",
+      "",
+      "if __name__ == \"__main__\":",
+      "    main()"
+    ],
+    "description": "Code snippet for a `if __name__ == \"__main__\": ...` block and main function definition"
+  },
+  "Variable Print": {
+    "prefix": "vprint",
+    "body": "print(f\"{${1:variable} = }\")$0",
+    "description": "Prints the variable name and its value for debugging purposes"
+  },
+  "F-string Print": {
+    "prefix": "fprint",
+    "body": "print(f\"${1:text}\")$0",
+    "description": "Prints f-string"
+  },
+  "SysExit": {
+    "prefix": "exit",
+    "body": ["import sys", "sys.exit(${1:0})$0"],
+    "description": "Exit the script with the specified exit code"
+  }
+}

@@ -21,7 +21,6 @@ return {
 
     cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 
-    require("luasnip.loaders.from_vscode").lazy_load()
     local check_backspace = function()
       local col = vim.fn.col(".") - 1
       return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
