@@ -2,6 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/nvim-treesitter-context",
   },
   build = ":TSUpdate",
   event = "VeryLazy",
@@ -24,6 +25,15 @@ return {
     },
     indent = {
       enable = true,
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "<C-space>",
+        node_incremental = "<C-space>",
+        scope_incremental = false,
+        node_decremental = "<bs>",
+      },
     },
     textobjects = {
       select = {

@@ -1,61 +1,81 @@
 return {
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    "williamboman/mason.nvim",
-    "folke/neodev.nvim",
-  },
-  config = function()
-    local on_attach = function(bufnr)
-      vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-      local opts = { buffer = bufnr }
-      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-      vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-      vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
-      vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
-      vim.keymap.set("n", "<space>wl", function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, opts)
-      vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
-      vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-      vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-      vim.keymap.set("n", "<space>f", function()
-        vim.lsp.buf.format({ async = true })
-      end, opts)
-    end
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "https://gitlab.com/schrieveslaach/sonarlint.nvim" },
+    config = function()
+      local lspconfig = require("lspconfig")
 
-    require("neodev").setup()
-    require("lspconfig").lua_ls.setup({
-      on_attach = on_attach,
-      settings = {
-        Lua = {
-          telemetry = { enable = false },
-          workspace = { checkThirdParty = false },
-        },
-      },
-    })
-    require("lspconfig").pyright.setup({
-      on_attach = on_attach,
-      settings = {
-        python = {
-          pythonPath = "/usr/bin/python3.11",
-        },
-      },
-    })
-    require("lspconfig").marksman.setup({})
-    require("lspconfig").yamlls.setup({
-      settings = {
-        yaml = {
-          validate = true,
-          schemaStore = {
-            enable = false,
-            url = "",
+      local on_attach = function(_, bufnr)
+        vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
+        local function map(mode, l, r, desc) vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc }) end
+        local opts = { buffer = bufnr }
+        map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+        map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+        map("n", "gr", vim.lsp.buf.references, "Go to references")
+        map("n", "gi", vim.lsp.buf.implementation, "Go to implementation")
+        map("n", "K", vim.lsp.buf.hover, "Show info")
+        map("n", "<C-k>", vim.lsp.buf.signature_help, "Show signature help")
+        map("n", "<leader>D", vim.lsp.buf.type_definition, "Show type definition")
+        map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
+        map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
+        map(
+          "n",
+          "<leader>d",
+          function() vim.diagnostic.open_float(nil, { focus = false, scope = "line", border = "rounded" }) end,
+          "Show diagnostics"
+        )
+      end
+
+      lspconfig.pyright.setup({
+        on_attach = on_attach,
+        settings = {
+          python = {
+            pythonPath = "/usr/bin/python3.11",
+            analysis = {
+              diagnosticMode = "workspace",
+            },
           },
         },
-      },
-    })
-  end,
+      })
+      lspconfig.marksman.setup({
+        on_attach = on_attach,
+      })
+      lspconfig.lua_ls.setup({
+        on_attach = on_attach,
+      })
+      lspconfig.yamlls.setup({
+        on_attach = on_attach,
+        settings = {
+          yaml = {
+            validate = true,
+            schemaStore = {
+              enable = false,
+              url = "",
+            },
+          },
+        },
+      })
+      require("sonarlint").setup({
+        server = {
+          cmd = {
+            "java",
+            "-jar",
+            vim.fn.stdpath("data") .. "/sonarlint/server/sonarlint-ls.jar",
+            "-stdio",
+            "-analyzers",
+            vim.fn.stdpath("data") .. "/sonarlint/analyzers/sonarpython.jar",
+          },
+          settings = {
+            sonarlint = {
+              test = "test",
+            },
+          },
+        },
+        filetypes = {
+          "python",
+        },
+      })
+    end,
+  },
 }

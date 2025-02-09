@@ -11,6 +11,6 @@ return {
   },
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "<leader>o", "<cmd>Oil --float<cr>", desc = "Open oil buffer" },
+    { "<leader>-", "<cmd>Oil --float<cr>", desc = "Open oil buffer" },
   },
 }

@@ -22,5 +22,3 @@ opt.wrap = true
 opt.background = "dark"
 opt.spelllang = "es,en_us"
 opt.spell = true
-
-vim.wo.foldmethod = "manual"

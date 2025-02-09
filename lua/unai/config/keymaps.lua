@@ -3,12 +3,6 @@ local map = vim.keymap.set
 -- Easier <esc>
 map("i", "jj", "<esc>", { silent = true })
 map("i", "jk", "<esc>", { silent = true })
-map("t", "jj", "<C-\\><C-n><cmd>ToggleTerm<CR>", { noremap = true })
-map("t", "jk", "<C-\\><C-n>", { noremap = true })
-
--- Easier previous/next navigation for spanish ISO layout
--- map("n", ">", "[", { silent = true, remap = true })
--- map("n", "<", "]", { silent = true, remap = true })
 
 -- System Clipboard
 map({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to clipboard" })
@@ -49,8 +43,6 @@ map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
 map("n", "<leader>w-", "<cmd>wincmd s<bar>wincmd w<cr>", { desc = "Split window below" })
 map("n", "<leader>w+", "<cmd>wincmd v<bar>wincmd w<cr>", { desc = "Split window right" })
-map("n", "<leader>-", "<cmd>wincmd s<bar>wincmd w<cr>", { desc = "Split window below" })
-map("n", "<leader>+", "<cmd>wincmd v<bar>wincmd w<cr>", { desc = "Split window right" })
 
 -- Tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
@@ -59,21 +51,3 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
--- New file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
--- LSP
-map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
-map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-map("n", "gr", vim.lsp.buf.references, { desc = "Go to references" })
-map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
-map("n", "K", vim.lsp.buf.hover, { desc = "Show info" })
-map("n", "<C-k>", vim.lsp.buf.signature_help, { desc = "Show signature help" })
-map("n", "<space>D", vim.lsp.buf.type_definition, { desc = "Show type definition" })
-map("n", "<space>rn", vim.lsp.buf.rename, { desc = "Rename" })
-map({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, { desc = "Code action" })
-
--- ToggleTerm
-map({ "n", "t" }, "<C-t>h", "<cmd>ToggleTerm size=20 direction=horizontal<CR>", { desc = "Toggle Terminal" })
-map({ "n", "t" }, "<C-t>f", "<cmd>ToggleTerm direction=float<CR>", { desc = "Toggle Terminal" })
